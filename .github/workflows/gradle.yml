@@ -1,45 +1,36 @@
-# This workflow will build a Java project with Gradle
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
-
 name: Java CI with Gradle
 
 on:
   push:
     branches:
-      - feature/*
-      - bugfix/*
-      - develop
+      - 'feature/*'
+      - 'bugfix/*'
+      - 'develop'
+      - 'master'
   pull_request:
     branches:
-      - feature/*
-      - bugfix/*
-      - develop
+      - 'feature/*'
+      - 'bugfix/*'
+      - 'develop'
+      - 'master'
   schedule:
-    - cron: " 0 0 * * *"
+    - cron: '0 0 * * *'
 
 jobs:
   runner-job:
-    # You must use a Linux environment when using service containers or container jobs
     runs-on: ubuntu-latest
-
-    # Service containers to run with `runner-job`
     services:
-      # Label used to access the service container
       postgres:
-        # Docker Hub image
         image: postgres
-        # Provide the password for postgres
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: nimda
-        # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
         ports:
-          # Maps tcp port 5432 on service container to the host
           - 5432:5432
 
     steps:
@@ -52,4 +43,3 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
-
