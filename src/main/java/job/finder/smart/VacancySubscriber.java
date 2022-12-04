@@ -15,6 +15,8 @@ import job.finder.smart.headhunter.mapper.Dto2EntityMapper;
 public class VacancySubscriber
 {
     private final JobVacanciesRepository jobVacanciesRepository;
+//    @Autowired
+//    ReactiveMongoTemplate template;
     private final Dto2EntityMapper<JobVacancy, JobVacancyEntity> jobVacancyDto2EntityMapper;
 
     public VacancySubscriber(final JobVacanciesRepository jobVacanciesRepository, final Dto2EntityMapper<JobVacancy, JobVacancyEntity> jobVacancyDto2EntityMapper)
